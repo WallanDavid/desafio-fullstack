@@ -6,6 +6,9 @@ services:
       - "4000:4000"
     environment:
       - JWT_SECRET=dev-secret
+    volumes:
+      - server-data:/app/data
+    restart: unless-stopped
   client:
     build:
       context: ./client
@@ -16,3 +19,5 @@ services:
     depends_on:
       - server
 
+volumes:
+  server-data:
